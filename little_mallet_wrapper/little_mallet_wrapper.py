@@ -140,7 +140,8 @@ def train_topic_model(path_to_mallet,
                       path_to_model,
                       path_to_topic_keys,
                       path_to_topic_distributions,
-                      num_topics):
+                      num_topics,
+                      seed):
 
     print('Training topic model...')
     result = subprocess.run([path_to_mallet,  
@@ -154,7 +155,9 @@ def train_topic_model(path_to_mallet,
                               '--output-topic-keys',
                               path_to_topic_keys,
                               '--output-doc-topics', 
-                              path_to_topic_distributions], stderr=subprocess.PIPE, stdout=subprocess.PIPE) #, shell=True)
+                              path_to_topic_distributions,
+                              '--random-seed',
+                              str(seed)], stderr=subprocess.PIPE, stdout=subprocess.PIPE) #, shell=True)
 
     print('====================================')
     print(result.stdout.decode('utf-8'))
