@@ -141,7 +141,7 @@ def train_topic_model(path_to_mallet,
                       path_to_topic_keys,
                       path_to_topic_distributions,
                       num_topics,
-                      seed):
+                      seed=1):
 
     print('Training topic model...')
     result = subprocess.run([path_to_mallet,  
