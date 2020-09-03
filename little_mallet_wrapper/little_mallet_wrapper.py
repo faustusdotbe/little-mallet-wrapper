@@ -162,9 +162,9 @@ def train_topic_model(path_to_mallet,
                               path_to_topic_keys,
                               '--output-doc-topics', 
                               path_to_topic_distributions,
+							  '--optimize-interval 10',
                               '--random-seed',
-                              str(seed),
-                              '--optimize-interval 10'], stderr=subprocess.PIPE, stdout=subprocess.PIPE) #, shell=True)
+                              str(seed)], stderr=subprocess.PIPE, stdout=subprocess.PIPE) #, shell=True)
 
     print('====================================')
     print(result.stdout.decode('utf-8'))
