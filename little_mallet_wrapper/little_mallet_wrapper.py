@@ -67,9 +67,10 @@ def quick_train_topic_model(path_to_mallet,
     path_to_training_data           = output_directory_path + '/training.txt'
     path_to_formatted_training_data = output_directory_path + '/mallet.training'
     path_to_model                   = output_directory_path + '/mallet.model.' + str(num_topics)
+    path_to_gzipped_model           = output_directory_path + '/mallet.model.' + str(num_topics) + ".gz"
     path_to_topic_keys              = output_directory_path + '/mallet.topic_keys.' + str(num_topics)
     path_to_topic_distributions     = output_directory_path + '/mallet.topic_distributions.' + str(num_topics)
-
+    
     import_data(path_to_mallet,
                 path_to_training_data,
                 path_to_formatted_training_data,
@@ -77,9 +78,11 @@ def quick_train_topic_model(path_to_mallet,
     train_topic_model(path_to_mallet,
                       path_to_formatted_training_data,
                       path_to_model,
+                      path_to_gzipped_model,
                       path_to_topic_keys,
                       path_to_topic_distributions,
-                      num_topics)
+                      num_topics,
+                      seed)
     
     topic_keys = load_topic_keys(path_to_topic_keys)
     topic_distributions = load_topic_distributions(path_to_topic_distributions)
@@ -138,6 +141,7 @@ def import_data(path_to_mallet,
 def train_topic_model(path_to_mallet,
                       path_to_formatted_training_data,
                       path_to_model,
+                      path_to_gzipped_model,
                       path_to_topic_keys,
                       path_to_topic_distributions,
                       num_topics,
@@ -152,13 +156,15 @@ def train_topic_model(path_to_mallet,
                               str(num_topics),
                               '--inferencer-filename',
                               path_to_model,
+                              '--output-state',
+                              path_to_gzipped_model,
                               '--output-topic-keys',
                               path_to_topic_keys,
                               '--output-doc-topics', 
                               path_to_topic_distributions,
                               '--random-seed',
-							  str(seed),
-							  '--optimize-interval 10'], stderr=subprocess.PIPE, stdout=subprocess.PIPE) #, shell=True)
+                              str(seed),
+                              '--optimize-interval 10'], stderr=subprocess.PIPE, stdout=subprocess.PIPE) #, shell=True)
 
     print('====================================')
     print(result.stdout.decode('utf-8'))
