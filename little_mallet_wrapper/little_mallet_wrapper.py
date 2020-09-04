@@ -154,7 +154,7 @@ def train_topic_model(path_to_mallet,
                               '--output-state', path_to_gzipped_model,
                               '--output-topic-keys', path_to_topic_keys,
                               '--output-doc-topics', path_to_topic_distributions,
-							  '--optimize-interval', str(10),
+                              '--optimize-interval', str(10),
                               '--random-seed', str(seed)])
     result = subprocess.run([path_to_mallet,  
                               'train-topics',
