@@ -148,6 +148,14 @@ def train_topic_model(path_to_mallet,
                       seed=1):
 
     print('Training topic model...')
+	print([path_to_mallet, 'train-topics', '--input', path_to_formatted_training_data,
+                              '--num-topics', str(num_topics),
+                              '--inferencer-filename', path_to_model,
+                              '--output-state', path_to_gzipped_model,
+                              '--output-topic-keys', path_to_topic_keys,
+                              '--output-doc-topics', path_to_topic_distributions,
+							  '--optimize-interval', str(10),
+                              '--random-seed', str(seed)])
     result = subprocess.run([path_to_mallet,  
                               'train-topics',
                               '--input',
