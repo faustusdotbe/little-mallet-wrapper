@@ -148,7 +148,7 @@ def train_topic_model(path_to_mallet,
                       seed=1):
 
     print('Training topic model...')
-	print([path_to_mallet, 'train-topics', '--input', path_to_formatted_training_data,
+    print([path_to_mallet, 'train-topics', '--input', path_to_formatted_training_data,
                               '--num-topics', str(num_topics),
                               '--inferencer-filename', path_to_model,
                               '--output-state', path_to_gzipped_model,
