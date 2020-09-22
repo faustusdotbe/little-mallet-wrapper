@@ -50,7 +50,7 @@ def process_string(text,
     elif numbers == 'remove':
         text = re.sub('[0-9]+', ' ', text)
     if remove_punctuation:
-        text = re.sub('[^A-Za-z\s]', ' ', text)
+        text = re.sub("[^A-Za-zåäöÖÅÄ\s]", ' ', text) # quick fix to include SE chars, needs option to a/ choose b/ select other alphabets
     if remove_stop_words:
         text = ' '.join([word for word in text.split() if word not in stop_words])
     if remove_short_words:
